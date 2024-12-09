@@ -1,22 +1,26 @@
-<div class="flex-1 p-6">
+<div class="h-full flex flex-col">
   <app-search-panel
     [searchTerm]="searchTerm"
     (searchChange)="searchChange.emit($event)"
     (toggleFilters)="isFilterOpen = true"
+    class="flex-none p-6 pb-0"
   ></app-search-panel>
   
   <app-results-header
     [count]="filteredEmployees.length"
     [showBangaloreOnly]="showBangaloreOnly"
     (toggleBangalore)="toggleBangalore()"
+    class="flex-none p-6"
   ></app-results-header>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <app-employee-card
-      *ngFor="let employee of filteredEmployees"
-      [employee]="employee"
-      (share)="handleShare()"
-    ></app-employee-card>
+  <div class="flex-1 overflow-y-auto px-6 pb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <app-employee-card
+        *ngFor="let employee of filteredEmployees"
+        [employee]="employee"
+        (share)="handleShare()"
+      ></app-employee-card>
+    </div>
   </div>
 
   <app-filter-panel

@@ -1,14 +1,16 @@
 <div class="flex min-h-screen bg-gray-100">
   <app-sidebar (filterChange)="onFilterChange($event)"></app-sidebar>
-  <div class="flex-1 flex flex-col">
+  <div class="flex-1 flex flex-col h-screen overflow-hidden">
     <app-header
       [selectedTeam]="selectedTeam"
-      (teamChange)="onTeamChange($event)">
+      (teamChange)="onTeamChange($event)"
+      class="flex-none">
     </app-header>
     <app-employee-list
       [employees]="filteredEmployees"
       [searchTerm]="searchTerm"
-      (searchChange)="onSearchChange($event)">
+      (searchChange)="onSearchChange($event)"
+      class="flex-1 overflow-hidden">
     </app-employee-list>
   </div>
 </div>
