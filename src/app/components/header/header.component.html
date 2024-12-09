@@ -1,0 +1,35 @@
+<div class="flex justify-end items-center p-4 border-b border-gray-200">
+ 
+  <div class="flex items-center space-x-4">
+    <div class="relative">
+      <button 
+        class="relative"
+        (click)="toggleNotifications($event)"
+      >
+        <lucide-icon name="bell" class="w-6 h-6 text-gray-600"></lucide-icon>
+        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+          {{notifications.length}}
+        </span>
+      </button>
+      <app-notification-popup
+        [isOpen]="isNotificationOpen"
+        [notifications]="notifications"
+        (close)="isNotificationOpen = false">
+      </app-notification-popup>
+    </div>
+    <div class="flex items-center space-x-4">
+      <select 
+        class="border rounded-lg p-3 cursor-pointer"
+        [ngModel]="selectedTeam"
+        (ngModelChange)="teamChange.emit($event)"
+      >
+        <option value="">Choose Team</option>
+        <option value="product">Product Team</option>
+        <option value="idc">IDC</option>
+        <option value="ocbc">OCBC</option>
+        <option value="radian">Radian</option>
+        <option value="rustify">Rustify</option>
+      </select>
+    </div>
+  </div>
+</div>

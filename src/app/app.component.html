@@ -1,0 +1,14 @@
+<div class="flex min-h-screen bg-gray-100">
+  <app-sidebar (filterChange)="onFilterChange($event)"></app-sidebar>
+  <div class="flex-1 flex flex-col">
+    <app-header
+      [selectedTeam]="selectedTeam"
+      (teamChange)="onTeamChange($event)">
+    </app-header>
+    <app-employee-list
+      [employees]="filteredEmployees"
+      [searchTerm]="searchTerm"
+      (searchChange)="onSearchChange($event)">
+    </app-employee-list>
+  </div>
+</div>

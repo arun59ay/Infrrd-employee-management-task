@@ -1,0 +1,29 @@
+.flex {
+    display: flex;
+    align-items: center;
+  
+    .text-sm {
+      font-size: 0.875rem;
+    }
+  
+    .text-xs {
+      font-size: 0.75rem;
+    }
+  
+    .space-x-1 > :not(:last-child) {
+      margin-right: 0.25rem; // Spacing between stars
+    }
+  
+    .text-yellow-400 {
+      color: #fbbf24; // Yellow for full/half stars
+    }
+  
+    .text-gray-300 {
+      color: #d1d5db; // Gray for empty stars
+    }
+  
+    .text-gray-500 {
+      color: #6b7280; // Gray for text
+    }
+  }
+  

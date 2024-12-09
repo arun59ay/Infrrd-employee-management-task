@@ -1,0 +1,26 @@
+<div class="flex items-center">
+    <!-- Rating Display -->
+    <span class="text-[12px] text-gray-500 mr-5">
+      {{ rating.toFixed(1) }} Rating
+    </span>
+  
+    <!-- Stars -->
+    <div class="flex space-x-[4px]">
+      <ng-container *ngFor="let star of stars">
+        <ng-container [ngSwitch]="star.type">
+          <!-- Full star -->
+          <span *ngSwitchCase="'full'" class="text-yellow-400 text-md">★</span>
+  
+          <!-- Half star -->
+          <span *ngSwitchCase="'half'" class="relative text-md">
+            <span class="absolute inset-0 overflow-hidden text-yellow-400" style="width: 50%">★</span>
+            <span class="text-gray-300">★</span>
+          </span>
+  
+          <!-- Empty star -->
+          <span *ngSwitchCase="'empty'" class="text-gray-300 text-md">★</span>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+  

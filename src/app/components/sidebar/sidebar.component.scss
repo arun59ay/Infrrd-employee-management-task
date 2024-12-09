@@ -1,0 +1,20 @@
+:host {
+  display: block;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: #f3f4f6;
+  }
+  
+  &.active {
+    background-color: #ecfdf5;
+    color: #059669;
+  }
+}

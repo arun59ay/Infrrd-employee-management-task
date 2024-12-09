@@ -1,0 +1,57 @@
+<div class="bg-white rounded-lg p-6 shadow-sm">
+  <div class="flex items-start justify-between mb-4">
+    <div class="flex items-center">
+      <img [src]="'https://api.dicebear.com/7.x/avataaars/svg?seed=' + employee.avatarId" [alt]="employee.name"
+        class="w-16 h-16 rounded-full mr-4" />
+      <div>
+        <h3 class="font-semibold text-[16px]">{{employee.name}}</h3>
+        <p class="text-gray-600 text-sm text-[#958d8d]">{{employee.designation}}</p>
+      </div>
+    </div>
+    <button (click)="share.emit()" class="text-gray-400 hover:text-gray-600">
+      <span class="flex justify-between align-center rounded-full border p-2 shadow-sm mr-2"   style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        <lucide-icon name="share-2" class="w-5 h-5"></lucide-icon>
+      </span>
+    </button>
+  </div>
+
+  <div class="flex items-center border-b border-gray-100 pb-2">
+    <app-rating-display [rating]="employee.rating"></app-rating-display>
+  </div>
+
+
+  <div>
+    <div class="flex items-center justify-between border-b border-gray-100 pt-2 pb-2">
+      <div class="text-sm text-gray-500">
+        Experience: <b>{{employee.experience}} Years</b>
+      </div>
+      <div class="mt-2 text-sm text-gray-500">
+        Date of Joining: <b>{{employee.dateOfJoining}}</b>
+      </div>
+    </div>
+  
+
+    <div class="mt-2 text-sm text-gray-500 border-b border-gray-100 pt-2 pb-2">
+      Current Team: <b>{{employee.companyName}}</b>
+    </div>
+    <div class="mt-2 text-sm text-gray-500 border-b border-gray-100 pt-2 pb-2">
+      Reporting Manager: <b>{{employee.reportingManager}}</b>
+    </div>
+  </div>
+
+  <div class="flex justify-between align-center mt-4">
+    <div class="flex items-center text-gray-600 cursor-pointer">
+      <span class="flex justify-between align-center rounded-full border p-2 shadow-sm mr-2 text-red">
+        <lucide-icon name="phone" class="w-4 h-4" color="red"></lucide-icon>
+      </span>
+      <span class="text-sm"><b>{{employee.contactNo}}</b></span>
+    </div>
+    <div class="flex items-center text-gray-600 cursor-pointer">
+      <span class="flex justify-between align-center rounded-full border p-2 shadow-sm mr-2">
+        <lucide-icon name="mail" class="w-4 h-4" color="blue"></lucide-icon>
+      </span>
+      <span class="text-sm"><b>{{employee.email}}</b></span>
+    </div>
+  </div>
+
+</div>

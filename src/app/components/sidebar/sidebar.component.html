@@ -1,0 +1,105 @@
+<div class="w-64 min-h-screen bg-white border-r border-gray-200 flex flex-col">
+  <div class="p-4 border-b border-gray-200">
+    <h1 class="text-3xl text-center font-bold text-green-600 pb-1">Infrrd</h1>
+  </div>
+  
+  <nav class="flex-1 p-4">
+    <ul class="space-y-2">
+      <li>
+        <a 
+          href="#" 
+          class="flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'overview'"
+          [class.text-green-600]="activeItem === 'overview'"
+          [class.text-gray-600]="activeItem !== 'overview'"
+          [class.hover:bg-gray-100]="activeItem !== 'overview'"
+          (click)="setActiveItem('overview')"
+        >
+          <lucide-icon name="message-square" class="w-5 h-5 mr-3"></lucide-icon>
+          Overview
+        </a>
+      </li>
+      <li>
+        <button 
+          (click)="handleSearchClick()"
+          class="w-full flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'search'"
+          [class.text-green-600]="activeItem === 'search'"
+          [class.text-gray-600]="activeItem !== 'search'"
+          [class.hover:bg-gray-100]="activeItem !== 'search'"
+        >
+          <lucide-icon name="search" class="w-5 h-5 mr-3"></lucide-icon>
+          Search
+        </button>
+      </li>
+      <li>
+        <a 
+          href="#" 
+          class="flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'history'"
+          [class.text-green-600]="activeItem === 'history'"
+          [class.text-gray-600]="activeItem !== 'history'"
+          [class.hover:bg-gray-100]="activeItem !== 'history'"
+          (click)="setActiveItem('history')"
+        >
+          <lucide-icon name="history" class="w-5 h-5 mr-3"></lucide-icon>
+          History
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#" 
+          class="flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'account'"
+          [class.text-green-600]="activeItem === 'account'"
+          [class.text-gray-600]="activeItem !== 'account'"
+          [class.hover:bg-gray-100]="activeItem !== 'account'"
+          (click)="setActiveItem('account')"
+        >
+          <lucide-icon name="user" class="w-5 h-5 mr-3"></lucide-icon>
+          My Account
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="p-4 border-t border-gray-200">
+    <ul class="space-y-2">
+      <li>
+        <a 
+          href="#" 
+          class="flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'help'"
+          [class.text-green-600]="activeItem === 'help'"
+          [class.text-gray-600]="activeItem !== 'help'"
+          [class.hover:bg-gray-100]="activeItem !== 'help'"
+          (click)="setActiveItem('help')"
+        >
+          <lucide-icon name="help-circle" class="w-5 h-5 mr-3"></lucide-icon>
+          Get Help
+        </a>
+      </li>
+      <li>
+        <a 
+          href="#" 
+          class="flex items-center p-2 rounded-lg transition-colors"
+          [class.bg-green-50]="activeItem === 'signout'"
+          [class.text-green-600]="activeItem === 'signout'"
+          [class.text-gray-600]="activeItem !== 'signout'"
+          [class.hover:bg-gray-100]="activeItem !== 'signout'"
+          (click)="setActiveItem('signout')"
+        >
+          <lucide-icon name="log-out" class="w-5 h-5 mr-3"></lucide-icon>
+          Sign Out
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <app-filter-panel
+    [isOpen]="isFilterOpen"
+    [currentFilters]="currentFilters"
+    (close)="handleClose()"
+    (filterChange)="handleFilterChange($event)">
+  </app-filter-panel>
+</div>

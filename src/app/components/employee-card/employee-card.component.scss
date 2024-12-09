@@ -1,0 +1,39 @@
+.employee-card {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  margin-right: 1rem;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+  
+  .icon {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.divider {
+  border-top: 1px solid #f3f4f6;
+  margin: 1rem 0;
+}
+
+.rating {
+  color: #fbbf24;
+  
+  .empty {
+    color: #d1d5db;
+  }
+}

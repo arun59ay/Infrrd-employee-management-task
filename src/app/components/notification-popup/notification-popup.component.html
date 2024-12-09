@@ -1,0 +1,23 @@
+<div *ngIf="isOpen" class="absolute right-0 top-12 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+  <div class="flex items-center justify-between p-4 border-b border-gray-200">
+    <h3 class="font-semibold text-gray-800">Notifications</h3>
+    <button (click)="close.emit()" class="text-gray-400 hover:text-gray-600">
+      <lucide-icon name="x" class="w-5 h-5"></lucide-icon>
+    </button>
+  </div>
+  <div class="max-h-96 overflow-y-auto">
+    <div *ngFor="let notification of notifications" 
+         class="p-4 border-b border-gray-100 hover:bg-gray-50">
+      <div class="flex justify-between items-start mb-1">
+        <h4 class="font-medium text-gray-800">{{notification.title}}</h4>
+        <span class="text-xs text-gray-500">{{notification.time}}</span>
+      </div>
+      <p class="text-sm text-gray-600">{{notification.message}}</p>
+    </div>
+  </div>
+  <div class="p-4 text-center border-t border-gray-200">
+    <button class="text-sm text-green-600 hover:text-green-700 font-medium">
+      View All Notifications
+    </button>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+.popup {
+  position: absolute;
+  right: 0;
+  top: 3rem;
+  width: 20rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  z-index: 50;
+}
+
+.notification-item {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  
+  &:hover {
+    background: #f9fafb;
+  }
+  
+  .time {
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+  
+  .message {
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+}
+
+.view-all {
+  padding: 1rem;
+  text-align: center;
+  color: #16a34a;
+  font-weight: 500;
+  
+  &:hover {
+    color: #15803d;
+  }
+}
