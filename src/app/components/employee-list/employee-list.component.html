@@ -1,31 +1,63 @@
 <div class="h-full flex flex-col">
-  <app-search-panel
-    [searchTerm]="searchTerm"
-    (searchChange)="searchChange.emit($event)"
-    (toggleFilters)="isFilterOpen = true"
-    class="flex-none p-6 pb-0"
-  ></app-search-panel>
-  
+  <!-- Header with Search and Add Button -->
+  <div class="flex justify-between items-center p-6 bg-white border-b">
+    <app-search-panel
+      [searchTerm]="searchTerm"
+      [isSearchVisible]="isSearchVisible"
+      (searchChange)="searchChange.emit($event)"
+      (toggleFilters)="isFilterOpen = true"
+    ></app-search-panel>
+    
+    <button
+      (click)="onAddEmployee()"
+      class="ml-4 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2 shadow-lg hover:shadow-xl"
+    >
+      <span>Add Employee</span>
+    </button>
+  </div>
+
+  <!-- Results Header -->
   <app-results-header
     [count]="filteredEmployees.length"
     [showBangaloreOnly]="showBangaloreOnly"
     (toggleBangalore)="toggleBangalore()"
-    class="flex-none p-6"
+    class="px-6 py-4 bg-white border-b"
   ></app-results-header>
 
-  <div class="flex-1 overflow-y-auto px-6 pb-6">
+  <!-- Employee Grid -->
+  <div class="flex-1 overflow-y-auto p-6 bg-gray-50">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <app-employee-card
-        *ngFor="let employee of filteredEmployees"
-        [employee]="employee"
-        (share)="handleShare()"
-      ></app-employee-card>
+      *ngFor="let employee of filteredEmployees"
+      [employee]="employee"
+      (edit)="onEditEmployee(employee)"
+      (delete)="onDeleteEmployee(employee)"
+      (share)="handleShare()"
+    ></app-employee-card>
     </div>
   </div>
 
+  <!-- Filter Panel -->
   <app-filter-panel
     [isOpen]="isFilterOpen"
     (close)="isFilterOpen = false"
     (filterChange)="handleFilterChange($event)"
   ></app-filter-panel>
+
+  <!-- Add/Edit Form -->
+  <app-employee-form
+    *ngIf="showAddForm || showEditForm"
+    [employee]="selectedEmployee"
+    (save)="handleSave($event)"
+    (cancel)="showAddForm = false; showEditForm = false"
+  ></app-employee-form>
+
+  <!-- Delete Confirmation -->
+  <app-confirm-dialog
+    *ngIf="showDeleteConfirm"
+    title="Delete Employee"
+    message="Are you sure you want to delete this employee? This action cannot be undone."
+    (confirm)="handleDelete()"
+    (cancel)="showDeleteConfirm = false"
+  ></app-confirm-dialog>
 </div>

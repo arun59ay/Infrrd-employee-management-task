@@ -7,5 +7,19 @@ import { Employee } from '../../types/employee';
 })
 export class EmployeeCardComponent {
   @Input() employee!: Employee;
+  @Output() edit = new EventEmitter<void>();
+  @Output() delete = new EventEmitter<void>();
   @Output() share = new EventEmitter<void>();
+
+  onEdit() {
+    this.edit.emit();
+  }
+
+  onDelete() {
+    this.delete.emit();
+  }
+
+  onShare() {
+    this.share.emit();
+  }
 }

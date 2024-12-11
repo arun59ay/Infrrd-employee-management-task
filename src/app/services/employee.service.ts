@@ -1,17 +1,50 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../types/employee';
 import { Filters } from '../types/filters';
-import { employees } from '../data/employees';
+import { employees as initialEmployees } from '../data/employees';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private employees = employees;
+  private employeesSubject = new BehaviorSubject<Employee[]>(initialEmployees);
+  employees$ = this.employeesSubject.asObservable();
 
-  // Method to filter employees based on filters and search term
+  constructor() {}
+
+  getEmployees(): Observable<Employee[]> {
+    return this.employees$;
+  }
+
+  addEmployee(employeeData: Omit<Employee, 'id'>): void {
+    const newEmployee: Employee = {
+      ...employeeData,
+      id: uuidv4(),
+      avatarId: Math.floor(Math.random() * 10) + 1
+    };
+    
+    const currentEmployees = this.employeesSubject.value;
+    this.employeesSubject.next([...currentEmployees, newEmployee]);
+  }
+
+  updateEmployee(id: string, employeeData: Partial<Employee>): void {
+    const currentEmployees = this.employeesSubject.value;
+    const updatedEmployees = currentEmployees.map(emp => 
+      emp.id === id ? { ...emp, ...employeeData } : emp
+    );
+    this.employeesSubject.next(updatedEmployees);
+  }
+
+  deleteEmployee(id: string): void {
+    const currentEmployees = this.employeesSubject.value;
+    const filteredEmployees = currentEmployees.filter(emp => emp.id !== id);
+    this.employeesSubject.next(filteredEmployees);
+  }
+
   filterEmployees(filters: Filters, searchTerm: string): Employee[] {
-    return this.employees
+    return this.employeesSubject.value
       .filter(employee => {
         // Department filter
         if (filters.department && !employee.designation.toLowerCase().includes(filters.department.toLowerCase())) {
@@ -52,12 +85,17 @@ export class EmployeeService {
           return false;
         }
 
+        // Search term filter
+        if (searchTerm) {
+          const searchLower = searchTerm.toLowerCase();
+          return (
+            employee.name.toLowerCase().includes(searchLower) ||
+            employee.email.toLowerCase().includes(searchLower) ||
+            employee.designation.toLowerCase().includes(searchLower)
+          );
+        }
+
         return true;
-      })
-      .filter(emp =>
-        !searchTerm ||
-        emp.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        emp.email.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      });
   }
 }

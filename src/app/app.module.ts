@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule, Search, Bell, X, Share2, Mail, Phone, MessageSquare, History, User, HelpCircle, LogOut, SlidersHorizontal } from 'lucide-angular';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { SearchPanelComponent } from './components/search-panel/search-panel.com
 import { ResultsHeaderComponent } from './components/results-header/results-header.component';
 import { NotificationPopupComponent } from './components/notification-popup/notification-popup.component';
 import { RatingDisplayComponent } from './components/rating-display/rating-display.component';
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +27,14 @@ import { RatingDisplayComponent } from './components/rating-display/rating-displ
     SearchPanelComponent,
     ResultsHeaderComponent,
     NotificationPopupComponent,
-    RatingDisplayComponent
+    RatingDisplayComponent,
+    EmployeeFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     LucideAngularModule.pick({
       Search, Bell, X, Share2, Mail, Phone, MessageSquare,
       History, User, HelpCircle, LogOut, SlidersHorizontal

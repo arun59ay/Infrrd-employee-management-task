@@ -8,32 +8,26 @@ import { Filters } from '../../types/filters';
 })
 export class SidebarComponent {
   @Output() filterChange = new EventEmitter<Filters>();
+  @Output() searchClick = new EventEmitter<void>();
+  @Output() resetSearch = new EventEmitter<void>();
 
   activeItem = '';
-  isFilterOpen = false;
-  currentFilters: Filters = {
-    department: '',
-    experience: '',
-    yearOfJoining: '',
-    location: '',
-    team: ''
-  };
 
   setActiveItem(item: string): void {
+    if (this.activeItem === item) {
+      return;
+    }
+    
     this.activeItem = item;
+    
+    if (item === 'search') {
+      this.searchClick.emit();
+    } else {
+      this.resetSearch.emit();
+    }
   }
 
   handleSearchClick(): void {
-    this.activeItem = 'search';
-    this.isFilterOpen = true;
-  }
-
-  handleClose(): void {
-    this.isFilterOpen = false;
-  }
-
-  handleFilterChange(filters: Filters): void {
-    this.currentFilters = { ...filters };
-    this.filterChange.emit(this.currentFilters);
+    this.setActiveItem('search');
   }
 }
